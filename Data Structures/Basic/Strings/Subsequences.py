@@ -9,6 +9,9 @@ In essence, every letter has 2 choices to make. -- Whether to be in the sequence
 number of permutations.
 
 I have written two solutions, one using recursion and the other using iteration.
+
+
+RECURSION + BACKTRACKING
 """
 
 def subsequences(str, idx, newString):

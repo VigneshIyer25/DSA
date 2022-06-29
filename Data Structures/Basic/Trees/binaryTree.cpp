@@ -40,6 +40,19 @@ class binaryTree{
             preorder(root->right);
         }
 
+        void preorder_iterative(Node *root){
+            if(!root) return;
+            stack<Node*> s;
+            s.push(root);
+            while(!s.empty()){
+                Node *currNode = s.top();
+                cout<<currNode->data<<" ";
+                s.pop();
+                if(currNode->right) s.push(currNode->right);
+                if(currNode->left) s.push(currNode->left);
+            }
+        }
+
         void inorder(Node *root){
             if(root == NULL) return;
             inorder(root->left);
@@ -67,6 +80,18 @@ class binaryTree{
                 if(currNode->right) q.push(currNode->right);
             }
         }
+
+        int countNodes(Node *root){
+            return root ? 1 + countNodes(root->left) + countNodes(root->right) : 0;
+        }
+
+        int treeHeight(Node *root){
+            return root ? 1 + max(treeHeight(root->left), treeHeight(root->right)) : 0;
+        }
+
+        int treeDiameter(Node *root){
+            return root ? max({treeDiameter(root->left), treeDiameter(root->right), 1 + treeHeight(root->left) + treeHeight(root->right)}) : 0;
+        }
 };
 
 int main(){
@@ -82,10 +107,18 @@ int main(){
             4   5    6
     */
     tree.preorder(root); // prints preorder sequence of the tree:- 1 2 3 4 5 6
-    cout<<"\n";
+    cout<<endl;
+    tree.preorder_iterative(root); // prints preorder sequence of the tree:- 1 2 3 4 5 6
+    cout<<endl;
     tree.inorder(root); // prints inorder sequence of the tree:- 4 2 5 1 3 6
-    cout<<"\n";
+    cout<<endl;
     tree.postorder(root); // prints inorder sequence of the tree:- 4 5 2 6 3 1
-    cout<<"\n";
+    cout<<endl;
     tree.levelOrder(root); // prints level order sequence of the tree:- 1 2 3 4 5 6
+    cout<<endl;
+    cout<<tree.countNodes(root); // prints number of nodes in the tree:- 6
+    cout<<endl;
+    cout<<tree.treeHeight(root);
+    cout<<endl;
+    cout<<tree.treeDiameter(root);
 }

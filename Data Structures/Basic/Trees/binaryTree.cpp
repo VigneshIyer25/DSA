@@ -118,7 +118,7 @@ int main(){
     cout<<endl;
     cout<<tree.countNodes(root); // prints number of nodes in the tree:- 6
     cout<<endl;
-    cout<<tree.treeHeight(root);
+    cout<<tree.treeHeight(root); // prints height of the tree:- 3
     cout<<endl;
-    cout<<tree.treeDiameter(root);
+    cout<<tree.treeDiameter(root); // prints the diameter(longest path between two nodes) of the tree:- 5
 }

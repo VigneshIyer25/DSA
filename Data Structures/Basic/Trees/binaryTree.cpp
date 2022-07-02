@@ -60,12 +60,51 @@ class binaryTree{
             inorder(root->right);
         }
 
+        void inorder_iterative(Node *root){
+            if(!root) return;
+            stack<Node*> s;
+            s.push(root);
+
+            unordered_map<Node*, int> cnt;
+            while(!s.empty()){
+                Node *curr = s.top();
+                if(!curr) {s.pop(); continue;}
+                if(cnt[curr] == 0) s.push(curr->left); // node visited first time.. visit left child first
+                else if(cnt[curr] == 1) cout<<curr->data<<" "; // node's left child visited earlier
+                else if(cnt[curr] == 2) s.push(curr->right); // node printed, now visit right child
+                else s.pop(); // lowest subtree fully visited.. delete the subroot
+                cnt[curr]++;
+            }
+        }
+
         void postorder(Node *root){
             if(root == NULL) return;
             postorder(root->left);
             postorder(root->right);
             cout<<root->data<<" ";
         }
+
+        void postorder_iterative(Node *root){
+            if(!root) return;
+            stack<pair<Node*,int>> s;
+
+            s.push({root, 0});
+            while(!s.empty()){
+                pair<Node*, int> p = s.top();
+                Node* curr = p.first;
+                int state = p.second;
+                s.pop();
+                if(!curr || state == 3) continue; // if empty node, dont push it back, ignore and continue
+                s.push({curr, state+1}); // we are popping and pushing as editing inplace in stack is not possible
+                if(state == 0) s.push({curr->left, 0}); // if node visited first time, visit left child first
+                if(state == 1) s.push({curr->right, 0}); // if node visited second time, visit right child first
+                if(state == 2){ 
+                    cout<<curr->data<<" "; // finally after visiting all children, print the node and pop it from the stack
+                    s.pop();
+                }
+            }
+        }
+
         // BFS with iteration
         void levelOrder(Node *root){
             if(!root) return;
@@ -112,7 +151,11 @@ int main(){
     cout<<endl;
     tree.inorder(root); // prints inorder sequence of the tree:- 4 2 5 1 3 6
     cout<<endl;
-    tree.postorder(root); // prints inorder sequence of the tree:- 4 5 2 6 3 1
+    tree.inorder_iterative(root); // prints inorder sequence of the tree:- 4 2 5 1 3 6
+    cout<<endl;
+    tree.postorder(root); // prints postorder sequence of the tree:- 4 5 2 6 3 1
+    cout<<endl;
+    tree.postorder_iterative(root); // prints postorder sequence of the tree:- 4 5 2 6 3 1
     cout<<endl;
     tree.levelOrder(root); // prints level order sequence of the tree:- 1 2 3 4 5 6
     cout<<endl;

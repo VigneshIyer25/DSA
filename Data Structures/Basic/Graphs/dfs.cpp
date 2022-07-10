@@ -2,19 +2,19 @@
 using namespace std;
 
 const int N = 1e5;
-vector<int> adj_mat[N];
+vector<int> adj_list[N];
 bool visited[N];
 
 void add_edge(int x, int y){
-    adj_mat[x].push_back(y);
-    adj_mat[y].push_back(x);
+    adj_list[x].push_back(y);
+    adj_list[y].push_back(x);
 }
 
 void DFS(int x){
     visited[x] = true;
     cout << x << " ";
 
-    for(int next_node : adj_mat[x]){
+    for(int next_node : adj_list[x]){
         if(visited[next_node]) continue;
         DFS(next_node);
     }

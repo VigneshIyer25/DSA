@@ -3,5 +3,6 @@
         "*.py": "python",
         "new": "cpp",
         "ostream": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "EnabledIfIncludesResolve"
 }

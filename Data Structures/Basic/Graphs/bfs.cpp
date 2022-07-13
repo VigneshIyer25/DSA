@@ -3,13 +3,13 @@ using namespace std;
 
 const int N = 1e5;
 const int INF = 1e6;
-vector<int> adj_mat[N];
+vector<int> adj_list[N];
 int dist[N];
 int pred[N];
 
 void add_edge(int x, int y){
-    adj_mat[x].push_back(y);
-    adj_mat[y].push_back(x);
+    adj_list[x].push_back(y);
+    adj_list[y].push_back(x);
 }
 
 void BFS(int source, int n){
@@ -24,7 +24,7 @@ void BFS(int source, int n){
         int curr = q.front();
         q.pop();
 
-        for(int next_node : adj_mat[curr]){
+        for(int next_node : adj_list[curr]){
             if(dist[next_node] == -INF){
                 dist[next_node] = dist[curr] + 1;
                 q.push(next_node);

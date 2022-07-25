@@ -1,5 +1,7 @@
 ## Dynamic Programming
 
+#### ​Those who don't remember the past, are condemned to repeat it. ~~Dynamic Programming
+
 Dynamic programming is a technique that combines the correctness of complete search and the efficiency of greedy algorithms. Dynamic programming can be applied if the problem can be divided into overlapping subproblems that can be solved independently.
 
 There are two uses for dynamic programming:
@@ -22,4 +24,10 @@ Before running the algorithm, the programmer considers the whole tree, then writ
 * Memoization is easy to code. 
 * Iterative tabulation method is chosen by most programmers, as it makes the code short. Although it may not be as easy as the recursive function to code.
 * Note: both top-down and bottom-up approach can be written with recursive or iterative tabular method(although may not seem natural).
-* With memoization, if the recursion tree is very deep(eg. fin(10^6)) it may result in a stack overflow because of delayed computation. 
+* With memoization, if the recursion tree is very deep(eg. fin(10^6)) it may result in a stack overflow because of delayed computation.
+
+## What to think of before approaching a dp problem:
+* determine the state of your dp. eg. dp[n] for a function say fibonacci.
+* determine the transition. How are consecutive subproblems solved based on values of previous problems.
+For eg. in case of Fibonacci, f(n) = f(n-1) + f(n-2)
+* Smallest subproblem. (Base Case) f(0) = 0, f(1) = 1.

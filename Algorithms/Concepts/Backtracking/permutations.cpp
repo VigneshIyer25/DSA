@@ -2,7 +2,7 @@
 using namespace std;
 
 void printPermutations(string s, string ans){
-    if(ans.size() == 3){
+    if(ans.size() == 4){
         cout<<ans<<endl;
         return;
     }
@@ -17,6 +17,6 @@ void printPermutations(string s, string ans){
 }
 
 int main(){
-    printPermutations("abc", "");
+    printPermutations("abcd", "");
     return 0;
 }
